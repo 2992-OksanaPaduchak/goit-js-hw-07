@@ -5,11 +5,11 @@ const btmElemCreate = document.querySelector("[data-create]");
 const btmElemDestroy = document.querySelector("[data-destroy]");
 
 function onClickCreate() {
-    const inputValue = inputElem.value
+    const inputValue = parseInt(inputElem.value);
     if (inputValue >= 1 && inputValue <= 100) {
         inputElem.value = '';
         createBoxes(inputValue)
-    };
+    };  
 };
 btmElemCreate.addEventListener('click',onClickCreate);
 
@@ -22,13 +22,12 @@ function createBoxes(amount) {
         div.style.height = `${boxSize}px`;
         div.style.backgroundColor = getRandomHexColor();
         boxSize += 10;
-        arr.unshift(div);
+        arr.push(div);
     };
 
-    for (let box of arr) {
-        boxesElem.prepend(box);
-    }
-};
+        boxesElem.prepend(...arr);
+        
+    };
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215)
@@ -47,3 +46,4 @@ btmElemCreate.classList.add('js_btm_create');
 btmElemDestroy.classList.add('js_btm_destroy');
 boxesElem.classList.add('js_box');
 userNameElem.classList.add('js_container');
+
